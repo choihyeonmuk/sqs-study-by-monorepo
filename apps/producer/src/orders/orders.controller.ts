@@ -1,12 +1,19 @@
-import { Controller, Get } from '@nestjs/common';
-import { OrdersService } from './orders.service';
+import { Body, Controller, Post } from '@nestjs/common';
+import { SqsService } from '../sqs/sqs.service';
 
-@Controller()
+@Controller('orders')
 export class OrdersController {
-  constructor(private readonly producerService: OrdersService) {}
+  constructor(private readonly sqsService: SqsService) {}
 
-  @Get()
-  getHello(): string {
-    return this.producerService.getHello();
+  @Post()
+  async createOrder(@Body() orderData: any) {
+    await this.sqsService.sendMessage({
+      type: 'CREATE_ORDER',
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      payload: orderData,
+      timestamp: new Date().toISOString(),
+    });
+
+    return { message: 'Order creation request sent to the queue' };
   }
 }
