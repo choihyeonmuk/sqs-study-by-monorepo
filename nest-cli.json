@@ -1,40 +1,24 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
-  "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/sqs-study-by-nest-monorepo/src",
-  "compilerOptions": {
-    "deleteOutDir": true,
-    "webpack": true,
-    "tsConfigPath": "apps/sqs-study-by-nest-monorepo/tsconfig.app.json"
-  },
   "monorepo": true,
-  "root": "apps/sqs-study-by-nest-monorepo",
+  "sourceRoot": "apps",
   "projects": {
-    "consumer": {
-      "type": "application",
-      "root": "apps/consumer",
-      "entryFile": "main",
-      "sourceRoot": "apps/consumer/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/consumer/tsconfig.app.json"
-      }
-    },
     "producer": {
       "type": "application",
-      "root": "apps/producer",
+      "root": "producer",
       "entryFile": "main",
-      "sourceRoot": "apps/producer/src",
+      "sourceRoot": "producer/src",
       "compilerOptions": {
         "tsConfigPath": "apps/producer/tsconfig.app.json"
       }
     },
-    "sqs-study-by-nest-monorepo": {
+    "consumer": {
       "type": "application",
-      "root": "apps/sqs-study-by-nest-monorepo",
+      "root": "consumer",
       "entryFile": "main",
-      "sourceRoot": "apps/sqs-study-by-nest-monorepo/src",
+      "sourceRoot": "consumer/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/sqs-study-by-nest-monorepo/tsconfig.app.json"
+        "tsConfigPath": "apps/consumer/tsconfig.app.json"
       }
     }
   }
